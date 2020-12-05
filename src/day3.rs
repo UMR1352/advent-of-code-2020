@@ -1,4 +1,4 @@
-use std::ops::{Index, IndexMut};
+use std::ops::Index;
 
 #[derive(Clone, Copy, Debug)]
 pub enum Cell {
