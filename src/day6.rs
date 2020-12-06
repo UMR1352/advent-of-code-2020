@@ -38,6 +38,11 @@ pub fn part2(input: &[Vec<String>]) -> usize {
                 .map(|member| member.chars().collect::<HashSet<char>>());
 
             let first_answer = answers.next().unwrap();
-            answers.fold(first_answer, |acc, x| acc.intersection(&x).cloned().collect()).len()
-        }).sum()
+            answers
+                .fold(first_answer, |acc, x| {
+                    acc.intersection(&x).cloned().collect()
+                })
+                .len()
+        })
+        .sum()
 }
