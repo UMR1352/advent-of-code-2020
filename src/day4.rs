@@ -143,7 +143,6 @@ fn is_valid_passport2(pass: &HashMap<Field, String>) -> bool {
     for field in [Byr, Iyr, Eyr, Hgt, Hcl, Ecl, Pid].iter() {
         if let Some(value) = pass.get(field) {
             if !validate_field(*field, value) {
-                println!("{:?}, field: {:?}, value: {}", pass, field, value);
                 return false;
             }
         } else {
