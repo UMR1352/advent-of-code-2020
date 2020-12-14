@@ -23,7 +23,7 @@ impl TryInto<Pos> for Direction {
             Self::South => Ok((0, -1)),
             Self::West => Ok((-1, 0)),
             _ => Err(()),
-        } 
+        }
     }
 }
 
@@ -78,7 +78,10 @@ impl Default for Ferry {
         Self {
             x: 0,
             y: 0,
-            waypoint: WayPoint { x_off: 10, y_off: 1 },
+            waypoint: WayPoint {
+                x_off: 10,
+                y_off: 1,
+            },
         }
     }
 }
@@ -86,14 +89,14 @@ impl Default for Ferry {
 impl Ferry {
     fn move_ferry(&mut self, dir: Pos, amt: usize) {
         let (dx, dy) = dir;
-        
+
         self.x += dx * amt as isize;
         self.y += dy * amt as isize;
     }
 
     fn move_waypoint(&mut self, dir: Pos, amt: usize) {
         let (dx, dy) = dir;
-        
+
         self.waypoint.x_off += dx * amt as isize;
         self.waypoint.y_off += dy * amt as isize;
     }
@@ -122,7 +125,7 @@ impl Ferry {
     }
 
     pub fn step(&mut self, action: Action, part1: bool) {
-        let Action {dir, amount: amt} = action;
+        let Action { dir, amount: amt } = action;
         match dir {
             Direction::Left | Direction::Right => self.rotate_waypoint(dir, amt),
             Direction::Forward => self.forward(amt),
@@ -153,7 +156,7 @@ pub fn part1(input: &[Action]) -> usize {
 
     for action in input {
         ferry.step(*action, true);
-    } 
+    }
 
     ferry.x.abs() as usize + ferry.y.abs() as usize
 }
@@ -164,7 +167,7 @@ pub fn part2(input: &[Action]) -> usize {
 
     for action in input {
         ferry.step(*action, false);
-    } 
+    }
 
     ferry.x.abs() as usize + ferry.y.abs() as usize
 }

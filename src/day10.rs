@@ -25,13 +25,11 @@ pub fn part1(input: &BTreeSet<u64>) -> usize {
 
 #[aoc(day10, part2)]
 pub fn part2(input: &BTreeSet<u64>) -> u64 {
-    let perms = |cnt| { 2_u64.pow(cnt as u32 - 1).min(7) };
-    let result = differences(input).fold((1, 0), |(tot, cnt), x| {
-        match x {
-            1 => (tot, cnt + 1),
-            _ if cnt > 1 => (tot * perms(cnt), 0),
-            _ => (tot, 0),
-        }
+    let perms = |cnt| 2_u64.pow(cnt as u32 - 1).min(7);
+    let result = differences(input).fold((1, 0), |(tot, cnt), x| match x {
+        1 => (tot, cnt + 1),
+        _ if cnt > 1 => (tot * perms(cnt), 0),
+        _ => (tot, 0),
     });
 
     result.0 * perms(result.1)

@@ -76,11 +76,12 @@ pub fn count_inner_bags(input: &HashMap<String, Vec<(String, u32)>>, bag: &str) 
     match input.get(bag) {
         None => 0,
         Some(bags) => {
-            if bags.is_empty() { return 0 }
-            else {
+            if bags.is_empty() {
+                return 0;
+            } else {
                 bags.iter().fold(0, |acc, (bag, amount)| {
                     let amount = *amount as usize;
-                    acc + amount + amount * count_inner_bags(input, bag) 
+                    acc + amount + amount * count_inner_bags(input, bag)
                 })
             }
         }

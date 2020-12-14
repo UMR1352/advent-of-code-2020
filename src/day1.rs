@@ -33,7 +33,7 @@ pub fn part2(input: &Input) -> u64 {
             if set.contains(&z) {
                 return x * y * z;
             }
-        } 
+        }
     }
 
     0
