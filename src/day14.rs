@@ -116,23 +116,16 @@ pub fn part2(input: &str) -> u64 {
             Command::MemSet(address, value) => {
                 let n_bits = 2_usize.pow(num_x as u32);
                 for i in 0..n_bits {
-                    let mut floating_bits = (i as u64).bits().skip(36 - num_x);
-                    let floating_address =
-                        mask.iter()
-                            .zip((address as u64).bits())
-                            .map(|(m, a)| {
-                                m.map_or_else(
-                                    || floating_bits.next().unwrap(),
-                                    |x| if !x { a } else { x },
-                                )
-                            })
-                            .fold(0, |acc, b| acc * 2 + b as u64) as usize;
+                    let mut floating_bits = (i as u64).bits().skip(36 - num_x); 
+                    let floating_address = mask.iter().zip((address as u64).bits()).map(|(m, a)| {
+                        m.map_or_else(|| floating_bits.next().unwrap(), |x| if !x { a } else { x })
+                    }).fold(0, |acc, b| acc * 2 + b as u64) as usize;
 
                     mem.insert(floating_address, value);
                 }
             }
         }
     }
-
+    
     mem.values().sum()
 }
