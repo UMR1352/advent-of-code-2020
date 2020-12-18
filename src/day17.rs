@@ -128,10 +128,3 @@ pub fn part2(map: &HashSet<Coordinate>) -> usize {
 
     map.count()
 }
-
-#[test]
-pub fn square_test() {
-    let n = cube_at((0, 0, 0, 0)).collect::<HashSet<Coordinate>>();
-    println!("{:?}", n);
-    assert!(false);
-}
